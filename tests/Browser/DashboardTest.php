@@ -19,29 +19,29 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class DashboardTest extends DuskTestCase
 {
-	use DatabaseMigrations;
+    use DatabaseMigrations;
 
-	/** @test */
-	function an_unauthenticated_user_cannot_visit_the_dashboard()
-	{
-	    $this->browse(function ($browser) {
+    /** @test */
+    function an_unauthenticated_user_cannot_visit_the_dashboard()
+    {
+        $this->browse(function ($browser) {
                 $browser->visit(new DashboardPage)
-                	->assertPathIs('/login');
+                    ->assertPathIs('/login');
         });
-	}
+    }
 
-	/** @test */
-	function an_authenticated_user_can_visit_the_dashboard()
-	{
-		$user = factory(User::class)->states('admin')->create()->first();
+    /** @test */
+    function an_authenticated_user_can_visit_the_dashboard()
+    {
+        $user = factory(User::class)->states('admin')->create()->first();
 
-		$this->browse(function ($browser) use ($user) {
+        $this->browse(function ($browser) use ($user) {
 
-				$browser
-					->loginAs($user)
-					->visit(new DashboardPage)
-                	->assertPathIs('/dashboard')
-                	->assertSeeIn('.navbar-brand', 'Antvel');
+                $browser
+                    ->loginAs($user)
+                    ->visit(new DashboardPage)
+                    ->assertPathIs('/dashboard')
+                    ->assertSeeIn('.navbar-brand', 'Antvel');
         });
-	}
+    }
 }

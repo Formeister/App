@@ -83,11 +83,13 @@ class RenameComposerFile extends Command
         }
 
         $this->filesystem->move(
-            $this->composerFile(), $this->composerPrdFile()
+            $this->composerFile(),
+            $this->composerPrdFile()
         );
 
         $this->filesystem->move(
-            $this->composerDevFile(), $this->composerFile()
+            $this->composerDevFile(),
+            $this->composerFile()
         );
 
         $this->info('The composer file was successful renamed!');
@@ -109,11 +111,13 @@ class RenameComposerFile extends Command
         }
 
         $this->filesystem->move(
-            $this->composerFile(), $this->composerDevFile()
+            $this->composerFile(),
+            $this->composerDevFile()
         );
 
         $this->filesystem->move(
-            $this->composerPrdFile(), $this->composerFile()
+            $this->composerPrdFile(),
+            $this->composerFile()
         );
 
         $this->info('The composer file was successful renamed!');

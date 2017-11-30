@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $suggestion = Suggest::for('product_viewed', 'product_purchased' , 'product_categories')->shake();
+        $suggestion = Suggest::for('product_viewed', 'product_purchased', 'product_categories')->shake();
 
         $suggestion['carousel'] = $suggestion['product_purchased'];
 

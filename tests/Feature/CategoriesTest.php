@@ -185,5 +185,4 @@ class CategoriesTest extends TestCase
         $this->assertEquals('store', $category->type);
         $this->assertTrue((bool) $category->status);
     }
-
 }

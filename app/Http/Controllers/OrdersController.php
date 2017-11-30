@@ -24,7 +24,8 @@ use Antvel\Product\Suggestions\Suggest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Antvel\Users\Notifications\OrderWasUpdated;
-use Antvel\Orders\Models\{ Order, OrderDetail };
+use Antvel\Orders\Models\Order;
+use Antvel\Orders\Models\OrderDetail;
 use Antvel\Users\Notifications\OrderWasCommented;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -116,9 +117,7 @@ class OrdersController extends Controller
 
                 return redirect()->route('orders.show_cart');
             }
-        }
-
-        //creating the user guest shopping cart
+        } //creating the user guest shopping cart
         else {
 
             /**
@@ -214,8 +213,7 @@ class OrdersController extends Controller
             if ($orderDetail) {
                 $orderDetail->price = $product->price;
                 $orderDetail->quantity = $orderDetail->quantity + $quantity;
-            }
-            //otherwise, the order details is created from the product received
+            } //otherwise, the order details is created from the product received
             else {
                 $orderDetail = new OrderDetail();
                 $orderDetail->order_id = $order->id;
@@ -370,9 +368,7 @@ class OrdersController extends Controller
                  * @var string
                  */
                 $wishListName = $cart ? $cart->description : $wishListName;
-            }
-
-            //if the required wish list does not exist, the default one  will beprovided
+            } //if the required wish list does not exist, the default one  will beprovided
             else {
                 $cart = Order::ofType('wishlist')
                     ->with('details')
@@ -432,7 +428,8 @@ class OrdersController extends Controller
 
         $suggestions = Suggest::for('product_purchased')->shake()->get('product_purchased');
 
-        return view('orders.wish',
+        return view(
+            'orders.wish',
             compact(
                 'cart',
                 'user',
@@ -494,9 +491,7 @@ class OrdersController extends Controller
 
         $totalAmount = 0;
         if (isset($cart) && $cart->exists()) {
-
             foreach ($cart->details as $detail) {
-
                 if ($detail->quantity > $detail->product->stock) {
                     $detail->quantity = $detail->product->stock;
                     $detail->save();
@@ -608,9 +603,7 @@ class OrdersController extends Controller
                 ->where('user_id', $user->id)
                 ->where('id', $originType->id)
                 ->first();
-        }
-
-        //if it came either from the default wish list or shopping cart
+        } //if it came either from the default wish list or shopping cart
         else {
             //getting the list information
             $basicCart = Order::ofType($origin)
@@ -703,7 +696,9 @@ class OrdersController extends Controller
                         'oldQuantity' => $oldQuantity,
                         'detail'      => $orderDetail->toArray(),
                         'price'       => $orderDetail->price,
-                    ], 200);
+                    ],
+                    200
+                );
             } else {
                 return \Response::json(['success' => false], 404);
             }
@@ -1049,7 +1044,7 @@ class OrdersController extends Controller
                     'orders'   => $orders,
                     'summary'  => $summary,
                 ];
-            break;
+                break;
         }
 
         $pdf = \PDF::loadView('pdf.orders.history', $data);

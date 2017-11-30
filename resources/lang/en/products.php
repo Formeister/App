@@ -12,11 +12,11 @@ return [
     'stock' => 'Stock',
     'pictures_warning' => 'Pictures have to be within a maximum dimensions of 1000 x 500 and be either PNG or JPG.',
 
-	'condition' => [
-		'refurbished' => 'Refurbished',
-		'used' => 'Used',
-		'new' => 'New',
-	],
+    'condition' => [
+        'refurbished' => 'Refurbished',
+        'used' => 'Used',
+        'new' => 'New',
+    ],
 
     'validation_errors' => [
         'pictures_upload' => 'One or more pictures have a wrong size/dimensions. Please, check them all and try again.',

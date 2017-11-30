@@ -59,26 +59,23 @@ class Utility
         }
 
         switch (config('app.payment_method')) {
+            case 'Points':
+                 $points = self::thousandSuffix($options['amount']);
+                if ($options['thousandSuffix']) {
+                    $points .= ' <small>'.trans('store.points').'</small>';
+                }
 
-              case 'Points':
+                return $points;
 
-                   $points = self::thousandSuffix($options['amount']);
-                   if ($options['thousandSuffix']) {
-                       $points .= ' <small>'.trans('store.points').'</small>';
-                   }
+            default:
+                setlocale(LC_MONETARY, config('app.lc_monetary'));
+                $format = '%i';
+                if ($options['discount']) {
+                    $format = str_replace('##', $options['discount'], trans('product.globals.price_after_discount'));
+                }
 
-                   return $points;
-
-              default:
-
-                  setlocale(LC_MONETARY, config('app.lc_monetary'));
-                  $format = '%i';
-                  if ($options['discount']) {
-                      $format = str_replace('##', $options['discount'], trans('product.globals.price_after_discount'));
-                  }
-
-                  return self::money_format($format, $options['amount']);
-          }
+                return self::money_format($format, $options['amount']);
+        }
     }
 
     /**
@@ -181,29 +178,29 @@ class Utility
 
             switch ($order->status) {
                 case 'open':
-                  $summary['open']['qty']++;
-                  $summary['open']['total'] += $total['total'];
-                break;
+                    $summary['open']['qty']++;
+                    $summary['open']['total'] += $total['total'];
+                    break;
 
                 case 'pending':
-                  $summary['pending']['qty']++;
-                  $summary['pending']['total'] += $total['total'];
-                break;
+                    $summary['pending']['qty']++;
+                    $summary['pending']['total'] += $total['total'];
+                    break;
 
                 case 'sent':
-                  $summary['sent']['qty']++;
-                  $summary['sent']['total'] += $total['total'];
-                break;
+                    $summary['sent']['qty']++;
+                    $summary['sent']['total'] += $total['total'];
+                    break;
 
                 case 'closed':
-                  $summary['closed']['qty']++;
-                  $summary['closed']['total'] += $total['total'];
-                break;
+                    $summary['closed']['qty']++;
+                    $summary['closed']['total'] += $total['total'];
+                    break;
 
                 case 'cancelled':
-                  $summary['cancelled']['qty']++;
-                  $summary['cancelled']['total'] += $total['total'];
-                break;
+                    $summary['cancelled']['qty']++;
+                    $summary['cancelled']['total'] += $total['total'];
+                    break;
             }
         });
 
@@ -281,8 +278,12 @@ class Utility
             }
             $space = $locale["{$letter}_sep_by_space"] ? ' ' : '';
 
-            $value = number_format($value, $right, $locale['mon_decimal_point'],
-                     $flags['nogroup'] ? '' : $locale['mon_thousands_sep']);
+            $value = number_format(
+                $value,
+                $right,
+                $locale['mon_decimal_point'],
+                $flags['nogroup'] ? '' : $locale['mon_thousands_sep']
+            );
             $value = @explode($locale['mon_decimal_point'], $value);
 
             $n = strlen($prefix) + strlen($currency) + strlen($value[0]);

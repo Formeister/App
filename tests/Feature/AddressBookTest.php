@@ -64,7 +64,7 @@ class AddressBookTest extends TestCase
             ->assertViewHas('addresses', function ($view) use ($address) {
                 $data = $view->first();
                 return $this->user->id == $data->user_id && $address->line1 == $data->line1;
-        });
+            });
     }
 
     /** @test */
@@ -113,7 +113,8 @@ class AddressBookTest extends TestCase
             $this->assertEquals('Guacara', $address->city);
             $this->assertEquals('2001', $address->zipcode);
             $this->assertEquals('', $address->line2);
-        });    }
+        });
+    }
 
     /** @test */
     function unsigned_users_cannot_store_an_address()

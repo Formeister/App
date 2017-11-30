@@ -72,7 +72,7 @@ class AccountSecurityTest extends TestCase
         $response = $response = $this->patch(route('user.action', ['action' => 'enable']));
 
         $response
-        	->assertStatus(302)
-        	->assertRedirect('/login');
+            ->assertStatus(302)
+            ->assertRedirect('/login');
     }
 }

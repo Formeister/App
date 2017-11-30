@@ -17,27 +17,27 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AboutTest extends TestCase
 {
-	use DatabaseMigrations;
+    use DatabaseMigrations;
 
-	/** @test */
-	function the_about_page_can_be_visited()
-	{
-		$response = $this->get(route('about'))->assertSuccessful();
+    /** @test */
+    function the_about_page_can_be_visited()
+    {
+        $response = $this->get(route('about'))->assertSuccessful();
 
-		$this->assertEquals('about', $response->data('tab'));
-	}
+        $this->assertEquals('about', $response->data('tab'));
+    }
 
-	/** @test */
-	function the_terms_page_can_be_visited()
-	{
-		$response = $this->get(route('about', ['section' => 'terms']))->assertSuccessful();
-		$this->assertEquals('terms', $response->data('tab'));
-	}
+    /** @test */
+    function the_terms_page_can_be_visited()
+    {
+        $response = $this->get(route('about', ['section' => 'terms']))->assertSuccessful();
+        $this->assertEquals('terms', $response->data('tab'));
+    }
 
-	/** @test */
-	function the_refunds_page_can_be_visited()
-	{
-		$response = $this->get(route('about', ['section' => 'refunds']))->assertSuccessful();
-		$this->assertEquals('refunds', $response->data('tab'));
-	}
+    /** @test */
+    function the_refunds_page_can_be_visited()
+    {
+        $response = $this->get(route('about', ['section' => 'refunds']))->assertSuccessful();
+        $this->assertEquals('refunds', $response->data('tab'));
+    }
 }
