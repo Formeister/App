@@ -1467,7 +1467,7 @@ class OrdersController extends Controller
     {
         $orderid = '4';
         $mailed_order = Order::where('id', $orderid)->with('details')->get()->first();
-       // dd($mailed_order->details);
+        // dd($mailed_order->details);
         $data = [
             'orderId' => $orderid,
             'order'   => $mailed_order,
