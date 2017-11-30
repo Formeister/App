@@ -52,7 +52,7 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    function the_user_email_is_required()
+    public function the_user_email_is_required()
     {
         $this
             ->post('login', ['email' => '', 'password' => '123456'])
@@ -60,7 +60,7 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    function the_user_email_has_to_be_a_valid_email_format()
+    public function the_user_email_has_to_be_a_valid_email_format()
     {
         $this
             ->post('login', ['email' => 'foo', 'password' => '123456'])
@@ -68,7 +68,7 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    function the_user_password_is_required()
+    public function the_user_password_is_required()
     {
         $this
             ->post('login', ['email' => 'foo@bar.com', 'password' => ''])

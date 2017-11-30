@@ -53,7 +53,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_see_their_address_book()
+    public function signed_users_can_see_their_address_book()
     {
         $this->actingAs($this->user);
         $address = factory(Address::class)->create(['user_id' => $this->user->id]);
@@ -68,7 +68,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function unsigned_users_cannot_see_their_address_book()
+    public function unsigned_users_cannot_see_their_address_book()
     {
         $this->get(route('addressBook.index'))->assertStatus(302)->assertRedirect(
             route('login')
@@ -76,7 +76,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_create_addresses()
+    public function signed_users_can_create_addresses()
     {
         $this->actingAs($this->user)
             ->get(route('addressBook.create'))
@@ -84,7 +84,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function unsigned_users_cannot_create_addresses()
+    public function unsigned_users_cannot_create_addresses()
     {
         $this->get(route('addressBook.create'))
             ->assertStatus(302)
@@ -92,7 +92,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_store_an_address()
+    public function signed_users_can_store_an_address()
     {
         $this->actingAs($this->user)
             ->post(route('addressBook.store'), $this->validData())
@@ -117,7 +117,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function unsigned_users_cannot_store_an_address()
+    public function unsigned_users_cannot_store_an_address()
     {
         $this->post(route('addressBook.store'), $this->validData())
             ->assertStatus(302)->assertRedirect(
@@ -128,7 +128,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_edit_theirs_addresses()
+    public function signed_users_can_edit_theirs_addresses()
     {
         $address = factory(Address::class)->create(['user_id' => $this->user->id]);
 
@@ -138,7 +138,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_cannot_edit_other_users_addresses()
+    public function signed_users_cannot_edit_other_users_addresses()
     {
         $addressA = factory(Address::class)->create(['user_id' => $this->user->id]);
 
@@ -152,7 +152,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_update_theirs_addresses()
+    public function signed_users_can_update_theirs_addresses()
     {
         $address = factory(Address::class)->create(['user_id' => $this->user->id]);
 
@@ -180,7 +180,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_cannot_update_other_users_addresses()
+    public function signed_users_cannot_update_other_users_addresses()
     {
         $addressA = factory(Address::class)->create(['user_id' => $this->user->id]);
 
@@ -212,7 +212,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_destroy_theirs_addresses()
+    public function signed_users_can_destroy_theirs_addresses()
     {
         $address = factory(Address::class)->create(['user_id' => $this->user->id])->first();
 
@@ -224,7 +224,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_cannot_destroy_other_users_addresses()
+    public function signed_users_cannot_destroy_other_users_addresses()
     {
         $addressA = factory(Address::class)->create(['user_id' => $this->user->id]);
 
@@ -239,7 +239,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_can_have_a_default_address_in_their_list()
+    public function signed_users_can_have_a_default_address_in_their_list()
     {
         $addressA = factory(Address::class)->create(['user_id' => $this->user->id, 'default' => 0]);
         $addressB = factory(Address::class)->create(['user_id' => $this->user->id, 'default' => 0]);
@@ -253,7 +253,7 @@ class AddressBookTest extends TestCase
     }
 
     /** @test */
-    function signed_users_cannot_assign_other_users_addresses_to_default()
+    public function signed_users_cannot_assign_other_users_addresses_to_default()
     {
         $addressA = factory(Address::class)->create(['user_id' => $this->user->id, 'default' => 0]);
 

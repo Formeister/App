@@ -27,7 +27,7 @@ class ProductsGroupingTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_edit_products_grouping()
+    public function an_unauthorized_user_cannot_edit_products_grouping()
     {
         $product = factory(Product::class)->create();
 
@@ -36,7 +36,7 @@ class ProductsGroupingTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_edit_products_grouping()
+    public function an_authorized_user_can_edit_products_grouping()
     {
         $productA = factory(Product::class)->create(['name' => 'Product A']);
         $productB = factory(Product::class)->create(['name' => 'Product B']);
@@ -60,7 +60,7 @@ class ProductsGroupingTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_update_products_grouping()
+    public function an_unauthorized_user_cannot_update_products_grouping()
     {
         $product = factory(Product::class)->create();
 
@@ -70,7 +70,7 @@ class ProductsGroupingTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_update_products_grouping()
+    public function an_authorized_user_can_update_products_grouping()
     {
         $this->disableExceptionHandling();
 

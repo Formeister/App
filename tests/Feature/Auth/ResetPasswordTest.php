@@ -29,7 +29,7 @@ class ResetPasswordTest extends TestCase
     }
 
     /** @test */
-    function the_send_reset_link_form_can_be_visited()
+    public function the_send_reset_link_form_can_be_visited()
     {
         $this->get(route('password.request'))
             ->assertSuccessful()
@@ -37,7 +37,7 @@ class ResetPasswordTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_with_a_valid_token_is_able_to_reset_his_password()
+    public function an_authorized_user_with_a_valid_token_is_able_to_reset_his_password()
     {
         $user = factory(User::class)->create();
 

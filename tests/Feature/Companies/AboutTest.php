@@ -20,7 +20,7 @@ class AboutTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function the_about_page_can_be_visited()
+    public function the_about_page_can_be_visited()
     {
         $response = $this->get(route('about'))->assertSuccessful();
 
@@ -28,14 +28,14 @@ class AboutTest extends TestCase
     }
 
     /** @test */
-    function the_terms_page_can_be_visited()
+    public function the_terms_page_can_be_visited()
     {
         $response = $this->get(route('about', ['section' => 'terms']))->assertSuccessful();
         $this->assertEquals('terms', $response->data('tab'));
     }
 
     /** @test */
-    function the_refunds_page_can_be_visited()
+    public function the_refunds_page_can_be_visited()
     {
         $response = $this->get(route('about', ['section' => 'refunds']))->assertSuccessful();
         $this->assertEquals('refunds', $response->data('tab'));

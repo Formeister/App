@@ -20,7 +20,7 @@ class AccountSecurityTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function an_authorized_user_is_able_to_disable_his_account()
+    public function an_authorized_user_is_able_to_disable_his_account()
     {
         $user = factory(User::class)->create()->first();
 
@@ -35,7 +35,7 @@ class AccountSecurityTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_able_to_enable_his_account()
+    public function an_authorized_user_is_able_to_enable_his_account()
     {
         $user = factory(User::class)->create()->first();
 
@@ -50,7 +50,7 @@ class AccountSecurityTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_has_to_provide_a_valid_endpoint_to_disable_his_account()
+    public function an_authorized_user_has_to_provide_a_valid_endpoint_to_disable_his_account()
     {
         $user = factory(User::class)->create()->first();
 
@@ -65,7 +65,7 @@ class AccountSecurityTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_manage_his_account_security_options()
+    public function an_unauthorized_user_is_not_allowed_to_manage_his_account_security_options()
     {
         $user = factory(User::class)->create()->first();
 

@@ -37,7 +37,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_manage_products_categories()
+    public function an_unauthorized_user_is_not_allowed_to_manage_products_categories()
     {
         $user = factory(User::class)->create()->first();
 
@@ -47,7 +47,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_manage_products_categories()
+    public function an_authorized_user_is_allowed_to_manage_products_categories()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -68,7 +68,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_create_categories()
+    public function an_unauthorized_user_is_not_allowed_to_create_categories()
     {
         $user = factory(User::class)->create()->first();
 
@@ -76,7 +76,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_create_categories()
+    public function an_authorized_user_is_allowed_to_create_categories()
     {
         $user = factory(User::class)->states('admin')->create();
         $parent = factory(Category::class)->create(['name' => 'parent']);
@@ -92,7 +92,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_store_categories()
+    public function an_unauthorized_user_is_not_allowed_to_store_categories()
     {
         $user = factory(User::class)->create()->first();
 
@@ -100,7 +100,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_store_categories()
+    public function an_authorized_user_is_allowed_to_store_categories()
     {
         $user = factory(User::class)->states('admin')->create();
 
@@ -126,7 +126,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_edit_categories()
+    public function an_unauthorized_user_is_not_allowed_to_edit_categories()
     {
         $category = factory(Category::class)->create();
         $user = factory(User::class)->create()->first();
@@ -136,7 +136,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_edit_categories()
+    public function an_authorized_user_is_allowed_to_edit_categories()
     {
         $user = factory(User::class)->states('admin')->create();
         $parent = factory(Category::class)->create(['name' => 'parent']);
@@ -151,7 +151,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_update_categories()
+    public function an_unauthorized_user_is_not_allowed_to_update_categories()
     {
         $category = factory(Category::class)->create();
         $user = factory(User::class)->create()->first();
@@ -160,7 +160,7 @@ class CategoriesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_update_categories()
+    public function an_authorized_user_is_allowed_to_update_categories()
     {
         $user = factory(User::class)->states('admin')->create();
         $category = factory(Category::class)->create();

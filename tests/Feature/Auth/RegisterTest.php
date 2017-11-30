@@ -53,7 +53,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    function an_user_is_able_to_confirm_his_account()
+    public function an_user_is_able_to_confirm_his_account()
     {
         Notification::fake();
 
@@ -75,7 +75,7 @@ class RegisterTest extends TestCase
     }
 
     /** @test */
-    function it_throws_404_if_the_given_data_did_not_match_any_users()
+    public function it_throws_404_if_the_given_data_did_not_match_any_users()
     {
         Notification::fake();
 

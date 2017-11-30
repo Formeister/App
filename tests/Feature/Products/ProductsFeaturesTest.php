@@ -42,7 +42,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_allowed_to_manage_products_features()
+    public function an_unauthorized_user_is_not_allowed_to_manage_products_features()
     {
         $user = factory(User::class)->states('customer')->create();
 
@@ -52,7 +52,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_allowed_to_manage_products_features()
+    public function an_authorized_user_is_allowed_to_manage_products_features()
     {
         factory(Feature::class)->create(['name' => 'foo']);
 
@@ -60,13 +60,13 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_create_new_features()
+    public function an_authorized_user_can_create_new_features()
     {
         $this->actingAs($this->admin)->get(route('features.create'))->assertSuccessful();
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_create_new_features()
+    public function an_unauthorized_user_cannot_create_new_features()
     {
         $user = factory(User::class)->states('customer')->create();
 
@@ -74,7 +74,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_store_new_features()
+    public function an_unauthorized_user_cannot_store_new_features()
     {
         $this->post(route('features.store'), $this->validData())
             ->assertStatus(302)
@@ -84,7 +84,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_store_new_features()
+    public function an_authorized_user_can_store_new_features()
     {
         $this->disableExceptionHandling();
 
@@ -98,7 +98,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_edit_new_features()
+    public function an_authorized_user_can_edit_new_features()
     {
         $feature = factory(Feature::class)->create(['name' => 'foo', 'help_message' => 'bar']);
 
@@ -110,7 +110,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_edit_new_features()
+    public function an_unauthorized_user_cannot_edit_new_features()
     {
         $feature = factory(Feature::class)->create(['name' => 'foo', 'help_message' => 'bar']);
 
@@ -123,7 +123,7 @@ class ProductsFeaturesTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_update_a_given_features()
+    public function an_authorized_user_can_update_a_given_features()
     {
         Event::fake();
 
@@ -159,8 +159,8 @@ class ProductsFeaturesTest extends TestCase
         });
     }
 
-     /** @test */
-    function an_unauthorized_user_cannot_update_a_given_features()
+    /** @test */
+    public function an_unauthorized_user_cannot_update_a_given_features()
     {
         $user = factory(User::class)->states('customer')->create();
 

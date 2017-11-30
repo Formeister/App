@@ -20,7 +20,7 @@ class ProductsTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function it_shows_the_products_listing()
+    public function it_shows_the_products_listing()
     {
         $productA = factory(Product::class)->create(['name' => 'foo','description' => 'bar'])->first();
         $productB = factory(Product::class)->create(['name' => 'biz','description' => 'sas'])->first();
@@ -34,7 +34,7 @@ class ProductsTest extends TestCase
     }
 
     /** @test */
-    function it_can_show_a_given_product()
+    public function it_can_show_a_given_product()
     {
         $product = factory(Product::class)->create();
 
@@ -47,7 +47,7 @@ class ProductsTest extends TestCase
     }
 
     /** @test */
-    function update_signed_user_preferences_when_showing_a_given_product_details()
+    public function update_signed_user_preferences_when_showing_a_given_product_details()
     {
         $this->actingAs(
             $user =  factory('Antvel\Users\Models\User')->create()->first()

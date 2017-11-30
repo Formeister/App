@@ -22,22 +22,21 @@ class HomeTest extends DuskTestCase
     use DatabaseMigrations;
 
     /** @test */
-    function an_unauthenticated_user_can_visit_the_homepage()
+    public function an_unauthenticated_user_can_visit_the_homepage()
     {
         $this->browse(function ($browser) {
-                $browser->visit(new HomePage)
+            $browser->visit(new HomePage)
                     ->assertSee('Antvel');
         });
     }
 
     /** @test */
-    function an_authenticated_user_can_visit_the_homepage()
+    public function an_authenticated_user_can_visit_the_homepage()
     {
         $user = factory(User::class)->states('admin')->create()->first();
 
         $this->browse(function ($browser) use ($user) {
-
-                $browser
+            $browser
                     ->loginAs($user)
                     ->visit(new HomePage)
                     ->assertPathIs('/')

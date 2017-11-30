@@ -54,13 +54,13 @@ class ManageProductsTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_see_seller_products_listing()
+    public function an_unauthorized_user_cannot_see_seller_products_listing()
     {
         $this->get(route('items.index'))->assertRedirect(route('login'));
     }
 
     /** @test */
-    function an_authorized_user_can_see_seller_products_listing()
+    public function an_authorized_user_can_see_seller_products_listing()
     {
         $product = factory(Product::class)->create(['name' => 'foo', 'category_id' => $this->category->id])->first();
 
@@ -72,7 +72,7 @@ class ManageProductsTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_is_not_able_to_publish_new_products()
+    public function an_unauthorized_user_is_not_able_to_publish_new_products()
     {
         $this->post(route('items.store'), $this->validaData())
             ->assertRedirect(route('login'))
@@ -82,13 +82,13 @@ class ManageProductsTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_see_products_creation_form()
+    public function an_authorized_user_can_see_products_creation_form()
     {
         $this->actingAs($this->seller)->get(route('items.create'))->assertSuccessful();
     }
 
     /** @test */
-    function an_authorized_user_can_store_new_products()
+    public function an_authorized_user_can_store_new_products()
     {
         Storage::fake('images/products');
 
@@ -130,7 +130,7 @@ class ManageProductsTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_see_products_edition_form()
+    public function an_authorized_user_can_see_products_edition_form()
     {
         $product = factory(Product::class)->create();
 
@@ -140,7 +140,7 @@ class ManageProductsTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_update_a_given_products()
+    public function an_authorized_user_can_update_a_given_products()
     {
         Storage::fake('images/products');
 

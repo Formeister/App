@@ -49,13 +49,13 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_can_see_his_profile_page()
+    public function an_authorized_can_see_his_profile_page()
     {
         $this->actingAs($this->user)->get(route('user.index'))->assertSuccessful();
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_manage_profiles()
+    public function an_unauthorized_user_cannot_manage_profiles()
     {
         $this->submit(['referral' => 'profile', 'email' => 'foo@bar.com', 'nickname' => 'foobar'])
             ->assertStatus(302)
@@ -63,7 +63,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_is_able_to_update_his_profile()
+    public function an_authorized_user_is_able_to_update_his_profile()
     {
         Event::fake();
 
@@ -79,7 +79,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function the_update_request_requires_the_referral_section_to_authorize_the_petition()
+    public function the_update_request_requires_the_referral_section_to_authorize_the_petition()
     {
         $this->actingAs($this->user)
             ->submit(['email' => 'foo@bar.com', 'nickname' => 'foobar'])
@@ -87,7 +87,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_can_update_his_profile_picture()
+    public function an_authorized_user_can_update_his_profile_picture()
     {
         Mail::fake();
         Storage::fake('images/avatars');
@@ -107,7 +107,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_unauthorized_user_cannot_update_his_profile_picture()
+    public function an_unauthorized_user_cannot_update_his_profile_picture()
     {
         $response = $this->json('PATCH', route('user.update', ['user' => $this->user]), [
             'referral' => 'profile',
@@ -124,7 +124,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_might_want_to_change_his_email_address()
+    public function an_authorized_user_might_want_to_change_his_email_address()
     {
         Mail::fake();
 
@@ -142,7 +142,7 @@ class ProfileTest extends TestCase
     }
 
     /** @test */
-    function an_authorized_user_might_want_to_change_his_password()
+    public function an_authorized_user_might_want_to_change_his_password()
     {
         Mail::fake();
 
